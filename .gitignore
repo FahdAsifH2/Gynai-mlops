@@ -11,11 +11,13 @@ mlruns/
 __pycache__/
 *.pyc
 
-# Data files (CSV, parquet, etc)
-*.csv
-*.parquet
-data/
-datasets/
+# Raw data files (optional: if you want to ignore them)
+# *.csv
+# *.parquet
+# datasets/
+
+# Track data folder with DVC
+# data/  <-- REMOVE or COMMENT THIS
 
 # Model files
 models/
@@ -24,4 +26,7 @@ models/
 
 # Notebooks checkpoints
 .ipynb_checkpoints/
+
+# CatBoost logs
 catboost_info/
+/maternal_data_cleaned_encoded.csv
