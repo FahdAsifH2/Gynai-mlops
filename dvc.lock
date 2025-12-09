@@ -1,0 +1,38 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python src/analyze_dataset.py
+    deps:
+    - path: maternal_data_cleaned_encoded.csv
+      hash: md5
+      md5: 217d2f31110b467626888eb189375892
+      size: 1370699
+    - path: src/analyze_dataset.py
+      hash: md5
+      md5: 31bcc6284ac1d95042b9f5f3624fa25a
+      size: 9944
+    outs:
+    - path: data/processed.csv
+      hash: md5
+      md5: 7889c15210cf1b66a18dfc5d8b789e8e
+      size: 1370691
+  train_model:
+    cmd: python src/train.py
+    deps:
+    - path: data/processed.csv
+      hash: md5
+      md5: 7889c15210cf1b66a18dfc5d8b789e8e
+      size: 1370691
+    - path: src/train.py
+      hash: md5
+      md5: 5e140c0516acb9ca19f145c62b2c859f
+      size: 7168
+    outs:
+    - path: metrics/metrics.json
+      hash: md5
+      md5: c768bb299424a3e2411c84795f8346ae
+      size: 186
+    - path: models/model.pkl
+      hash: md5
+      md5: 0d341b8104022026edf31536fc20f804
+      size: 37258605

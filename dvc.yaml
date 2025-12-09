@@ -1,0 +1,18 @@
+stages:
+  preprocess:
+    cmd: python src/analyze_dataset.py
+    deps:
+      - src/analyze_dataset.py
+      - maternal_data_cleaned_encoded.csv
+    outs:
+      - data/processed.csv
+
+  train_model:
+    cmd: python src/train.py
+    deps:
+      - src/train.py
+      - data/processed.csv
+    outs:
+      - models/model.pkl
+    metrics:
+      - metrics/metrics.json

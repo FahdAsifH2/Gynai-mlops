@@ -3,10 +3,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
-
+import os  # ← ADD THIS LINE
 # Load data
 df = pd.read_csv("maternal_data_cleaned_encoded.csv")
 
+# ← ADD THESE TWO LINES
+os.makedirs("data", exist_ok=True)
+print("✅ Ensured 'data/' directory exists")
 print("="*80)
 print("COMPLETE DATASET ANALYSIS REPORT")
 print("="*80)
@@ -230,7 +233,6 @@ skewed_cols = [col for col in numeric_cols if abs(df[col].skew()) > 1]
 if skewed_cols:
     print(f"\n⚠️ HIGHLY SKEWED FEATURES: {skewed_cols}")
     print(f"   - Consider log transformation or PowerTransformer")
-
 # Scaling
 print(f"\n✅ FEATURE SCALING REQUIRED:")
 print(f"   - Use StandardScaler for Logistic Regression")
@@ -239,3 +241,17 @@ print(f"   - Tree-based models don't require scaling")
 print("\n" + "="*80)
 print("ANALYSIS COMPLETE!")
 print("="*80)
+
+# ============================================================================
+# 12. SAVE PROCESSED DATASET FOR DVC PIPELINE
+# ============================================================================
+print("\n" + "="*80)
+print("SAVING PROCESSED DATASET FOR DVC PIPELINE")
+print("="*80)
+
+# Save the cleaned dataset to data/ folder for DVC tracking
+df.to_csv("data/processed.csv", index=False)
+print("✅ Saved processed dataset to: data/processed.csv")
+print(f"   Shape: {df.shape}")
+print(f"   Columns: {list(df.columns)}")
+
