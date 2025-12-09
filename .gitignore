@@ -1,1 +1,27 @@
-/maternal_data_cleaned_encoded.csv
+# DVC cache
+.dvc/cache/
+
+# DVC temp files
+*.dvc.tmp
+
+# MLflow experiment logs
+mlruns/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Data files (CSV, parquet, etc)
+*.csv
+*.parquet
+data/
+datasets/
+
+# Model files
+models/
+*.pkl
+*.joblib
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+catboost_info/
